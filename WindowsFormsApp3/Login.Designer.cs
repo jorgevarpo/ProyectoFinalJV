@@ -60,15 +60,15 @@
             this.Usuario.Location = new System.Drawing.Point(181, 60);
             this.Usuario.Multiline = true;
             this.Usuario.Name = "Usuario";
-            this.Usuario.Size = new System.Drawing.Size(265, 41);
+            this.Usuario.Size = new System.Drawing.Size(265, 29);
             this.Usuario.TabIndex = 2;
             // 
             // Pass
             // 
-            this.Pass.Location = new System.Drawing.Point(182, 159);
+            this.Pass.Location = new System.Drawing.Point(182, 151);
             this.Pass.Multiline = true;
             this.Pass.Name = "Pass";
-            this.Pass.Size = new System.Drawing.Size(263, 38);
+            this.Pass.Size = new System.Drawing.Size(263, 28);
             this.Pass.TabIndex = 3;
             // 
             // Entrar
