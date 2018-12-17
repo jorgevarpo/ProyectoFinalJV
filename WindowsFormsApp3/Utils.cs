@@ -8,14 +8,18 @@ using Microsoft.VisualBasic;
 using Base;
 
 
+
 namespace WindowsFormsApp3
 {
     class Utils
     {
-
+        /// <summary>
+        /// Esta clase es la que hace la conexion entre "la base de datos" y las vistas que vera el usuario
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         BasedeDato basede = new BasedeDato();
         
-        //static Boolean a = true;
         public Utils() { }
         
         public void BorderChange(Button btn, Label label,Label pla, int id)
@@ -25,47 +29,41 @@ namespace WindowsFormsApp3
             if (basede.verifica(id))
             {
                 bool a = false;
-
                 while (!a)
                 {
                     placa = Interaction.InputBox("Ingrese Numero de Placa", "Estacionamiento", "");//texto, titulo, PLACEHOLDER
                     a = Check(placa);
                 }
-
-
                 if (a)
                 {
                     btn.FlatAppearance.BorderColor = System.Drawing.Color.Red;
                     label.Text = "Ocupado";
-                    pla.Text = "Placa:"+placa;
-                    string hora = DateTime.Now.ToString("h:mm:ss tt");
-                    label.Text = hora;
+                    pla.Text = placa;
+                    DateTime hora = DateTime.Now;
+                    label.Text = hora.ToString("h:mm:ss");
+
+                    basede.Ingresar(id,placa, hora);
                     pla.Visible = true;
                     MessageBox.Show(basede.Actualiza(id, false));
                     a = false;
                 }
-
-
             }
             else
             {
                 DialogResult resultado = MessageBox.Show("Vehiculo sale?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information); 
                 if (resultado == DialogResult.Yes)
                 {
-                    MessageBox.Show(basede.Sale(id));
+                    placa = pla.Text;
+                    MessageBox.Show(basede.Sale(id, placa));
                     btn.FlatAppearance.BorderColor = System.Drawing.Color.Green;
                     label.Text = "Disponible";
                     pla.Text = null;
                     pla.Visible = false;
-                    
-                }
-                else
-                {
-                    
+                    int a = BasedeDato.Facturero.Count -1;
+                    factura(placa);                 
                 }
             }
         }
-
 
         public bool Check(String data)
         {
@@ -94,7 +92,39 @@ namespace WindowsFormsApp3
             }
         }
 
-        
+        public bool login(string nombre, string contra)
+        {
+            if (basede.Valida(nombre, contra)) return true;
+            else return false;
+        }
+
+        public void factura(string id ) // Este metodo cargara el Form con la informacion de la factura solicitada
+        {
+            Factura facturita  = basede.factura(id);
+            Recibo recibito = new Recibo(facturita.Fecha, facturita.IdFactura.ToString(), facturita.Carrito.Placa.ToString(), facturita.Carrito.HoraEntrada.ToString(), facturita.Carrito.HoraSalida.ToString(), facturita.Carrito.TotalPagar.ToString());
+            recibito.Show();
+        }
+
+        public void NumeroFactura(ComboBox combo, Button boton)
+        {
+            foreach (Factura x in BasedeDato.Facturero)
+            {
+                combo.Items.Add(x.IdFactura);
+            }
+
+            if (combo.Items.Count < 1) {
+                MessageBox.Show("No hay Facturas por el momento");
+                combo.Hide();
+                boton.Hide();
+
+            }
+        }
+        public void facturaInt(int id) // Este metodo cargara el Form con la informacion de la factura solicitada por medio de INT
+        {
+            Factura facturita = basede.facturaInt(id);
+            Recibo recibito = new Recibo(facturita.Fecha, facturita.IdFactura.ToString(), facturita.Carrito.Placa.ToString(), facturita.Carrito.HoraEntrada.ToString(), facturita.Carrito.HoraSalida.ToString(), facturita.Carrito.TotalPagar.ToString());
+            recibito.Show();
+        }
 
     }
 }

@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp3
 {
-    public partial class Form1 : Form
+    public partial class Panel : Form
     {
         Utils utils;
-        public Form1()
+        public Panel()
         {
             InitializeComponent();
              utils = new Utils();
@@ -84,6 +84,54 @@ namespace WindowsFormsApp3
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            utils.BorderChange(button7, disp7, placa7, 7);
+        }
+
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            utils.BorderChange(button8, disp8, placa8, 8);
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            utils.BorderChange(button9, disp9, placa9, 9);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            utils.BorderChange(button10, disp10, placa10, 10);
+        }
+
+        private void button12_Click_1(object sender, EventArgs e)
+        {
+            utils.BorderChange(button12, disp12, placa12, 12);
+
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            
+        }
+            //boton salir
+        private void button13_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            this.Hide();
+            login.ShowDialog();
+
+        }
+
+        private void Factura_Click(object sender, EventArgs e)
+        {
+            MostrarRecibos muestra = new MostrarRecibos();
+            this.Hide();
+            muestra.ShowDialog();
         }
     }
 }

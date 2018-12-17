@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp3", "WindowsFormsApp3\WindowsFormsApp3.csproj", "{99DD1CFD-B070-4BD5-ADE6-2F819E7E5C1D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfazGrafica", "WindowsFormsApp3\InterfazGrafica.csproj", "{99DD1CFD-B070-4BD5-ADE6-2F819E7E5C1D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base", "Base\Base.csproj", "{D61316EA-D88D-4579-B95A-ED7B864F572C}"
 EndProject
